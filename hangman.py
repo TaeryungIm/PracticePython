@@ -196,10 +196,12 @@ def play_hangman():
         if word_guessed():
             print("You won!!!")
         else:
+            print("The secret word is", secret_word + "!")
             print("You lost...")
 
     elif mode_player == 2:
         attempt = 1
+        MAX_GUESSES *= 2
         while (mistakes_made < MAX_GUESSES) and (not word_guessed()):
             if attempt % 2 == 1:
                 print("Player1's turn!")
@@ -248,6 +250,8 @@ def play_hangman():
                         print_guessed()
                         attempt += 1
                         mistakes_made += 2
+                case _:
+                    print("Input the correct number!")
 
         if word_guessed():
             if attempt % 2 == 1:
@@ -255,6 +259,7 @@ def play_hangman():
             else:
                 print("Player2 won!")
         else:
+            print("The secret word is", secret_word + "!")
             print("Try again!")
     else:
         print("You have inputted incorrect mode!")

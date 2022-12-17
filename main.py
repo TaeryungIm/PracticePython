@@ -145,4 +145,6 @@ def q_10(lst):
 #     if not dupli:
 #         break
 
-print(7 % 2)
+# print(7 % 2)
+a, b = 3, 3
+print(a, b)
