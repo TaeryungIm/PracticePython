@@ -78,13 +78,13 @@ def word_guessed():
     global letters_guessed
 
     ####### YOUR CODE HERE ######
-    letters_correct = {}
+    letters_correct = 0
     for i in letters_guessed:
         for j in range(0, len(secret_word)):
             if i == secret_word[j]:
-                letters_correct[j] = secret_word[j]
+                letters_correct += 1
 
-    if len(letters_correct) == len(secret_word):
+    if len(secret_word) == letters_correct:
         return True
     else:
         return False
