@@ -1,4 +1,6 @@
 # this is to help Yoonbin Cho to solve her problem
+import re
+
 
 def q_1():
     nest_list = [12, 13, [14, 15], [16, [17, 18, ["weather change!"]], 19, 20], 21, 22]
@@ -146,5 +148,57 @@ def q_10(lst):
 #         break
 
 # print(7 % 2)
-a, b = 3, 3
-print(a, b)
+# a, b = 3, 3
+# print(a, b)
+
+
+secret_word = "claptrap"
+letters_guessed = ['a', 'p', 'k', 'c', 't', 'i', 'l', 'r']
+
+
+# From part 2, 3 and, 4:
+def word_guessed():
+    '''
+    Returns True if the player has successfully guessed the word,
+    and False otherwise.
+    '''
+    global secret_word
+    global letters_guessed
+
+    ####### YOUR CODE HERE ######
+    correct_num = 0
+    for i in letters_guessed:
+        for j in range(0, len(secret_word)):
+            if i == secret_word[j]:
+                correct_num += 1
+
+    if correct_num == len(secret_word):
+        return True
+    else:
+        return False
+
+
+def print_guessed():
+    '''
+    Prints out the characters you have guessed in the secret word so far
+    '''
+    global secret_word
+    global letters_guessed
+
+    ####### YOUR CODE HERE ######
+    unused_le = [chr(i) for i in range(ord('a'), ord('z')+1)]
+
+    str_dash = "-" * len(secret_word)
+    for i in letters_guessed:
+        unused_le.remove(i)
+        for j in range(0, len(secret_word)):
+            if i == secret_word[j]:
+                str_dash = str_dash[0:j] + secret_word[j] + str_dash[j+1:]
+
+    print(str_dash)
+    print("unused letters:", unused_le)
+    return str_dash
+
+
+print(word_guessed())
+print_guessed()

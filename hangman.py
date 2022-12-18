@@ -67,6 +67,7 @@ MAX_GUESSES = 6
 secret_word = ""
 letters_guessed = []
 
+
 # From part 2, 3 and, 4:
 def word_guessed():
     '''
@@ -149,49 +150,48 @@ def play_hangman():
 
     mode_player = int(input("Select the player mode(Single->1, 2-player->2): "))
     if mode_player == 1:
-        while (mistakes_made < MAX_GUESSES) and (not word_guessed()):
+        while (mistakes_made < MAX_GUESSES) and (not word_guessed()):  # loop until used all guesses or guessed it right
             select_num = int(input("Select what you want to guess(letter->1, word->2), : "))
-            match select_num:
-                case 1:
-                    guess_bool = False
-                    print(MAX_GUESSES - mistakes_made, "guesses left")
-                    while True:
-                        dupli = False
-                        letter = input("Input a letter you guess: ")
-                        letter.lower()
-                        for i in letters_guessed:
-                            if i == letter:
-                                dupli = True
-                                print("It is already used!")
-                                break
-                        if not dupli:
+            if select_num == 1:
+                guess_bool = False
+                print(MAX_GUESSES - mistakes_made, "guesses left")
+                while True:  # loop it until you guess the letter that hasn't been guessed already
+                    dupli = False
+                    letter = input("Input a letter you guess: ")
+                    letter.lower()
+                    for i in letters_guessed:  # if it's already guessed
+                        if i == letter:
+                            dupli = True
+                            print("It is already used!")
                             break
-                    letters_guessed.append(letter)
-                    for i in range(0, len(secret_word)):
-                        if letter == secret_word[i]:
-                            guess_bool = True
-                            break
-                    if guess_bool:
-                        print("You guessed right!")
-                        print_guessed()
-                    else:
-                        print("You guessed wrong!")
-                        print_guessed()
-                        mistakes_made += 1
-                case 2:
-                    guess_bool = False
-                    print(MAX_GUESSES - mistakes_made, "guesses left")
-                    word = input("Input a word you guess: ")
-                    word.lower()
-                    if word == secret_word:
-                        print("You guessed right!")
+                    if not dupli:  # if not guessed, use break to escape the loop
                         break
-                    else:
-                        print("You guessed wrong!")
-                        print_guessed()
-                        mistakes_made += 2
-                case _:
-                    print("Input the correct number!")
+                letters_guessed.append(letter)
+                for i in range(0, len(secret_word)):  # check whether the letter is in the word
+                    if letter == secret_word[i]:
+                        guess_bool = True
+                        break
+                if guess_bool:  # if it's in
+                    print("You guessed right!")
+                    print_guessed()
+                else:  # if it's not in
+                    print("You guessed wrong!")
+                    print_guessed()
+                    mistakes_made += 1
+            elif select_num == 2:
+                guess_bool = False
+                print(MAX_GUESSES - mistakes_made, "guesses left")
+                word = input("Input a word you guess: ")
+                word.lower()
+                if word == secret_word:
+                    print("You guessed right!")
+                    break
+                else:
+                    print("You guessed wrong!")
+                    print_guessed()
+                    mistakes_made += 2
+            else:
+                print("Input the correct number!")
 
         if word_guessed():
             print("You won!!!")
@@ -202,56 +202,55 @@ def play_hangman():
     elif mode_player == 2:
         attempt = 1
         MAX_GUESSES *= 2
-        while (mistakes_made < MAX_GUESSES) and (not word_guessed()):
+        while (mistakes_made < MAX_GUESSES) and (not word_guessed()):  # mostly same as single player
             if attempt % 2 == 1:
                 print("Player1's turn!")
             else:
                 print("Player2's turn!")
 
             select_num = int(input("Select what you want to guess(letter->1, word->2), : "))
-            match select_num:
-                case 1:
-                    guess_bool = False
-                    print(MAX_GUESSES - mistakes_made, "guesses left")
-                    while True:
-                        dupli = False
-                        letter = input("Input a letter you guess: ")
-                        letter.lower()
-                        for i in letters_guessed:
-                            if i == letter:
-                                dupli = True
-                                print("It is already used!")
-                                break
-                        if not dupli:
+            if select_num == 1:
+                guess_bool = False
+                print(MAX_GUESSES - mistakes_made, "guesses left")
+                while True:
+                    dupli = False
+                    letter = input("Input a letter you guess: ")
+                    letter.lower()
+                    for i in letters_guessed:
+                        if i == letter:
+                            dupli = True
+                            print("It is already used!")
                             break
-                    letters_guessed.append(letter)
-                    for i in range(0, len(secret_word)):
-                        if letter == secret_word[i]:
-                            guess_bool = True
-                            break
-                    if guess_bool:
-                        print("You guessed right!")
-                        print_guessed()
-                    else:
-                        print("You guessed wrong!")
-                        print_guessed()
-                        mistakes_made += 1
-                        attempt += 1
-                case 2:
-                    guess_bool = False
-                    print(MAX_GUESSES - mistakes_made, "guesses left")
-                    word = input("Input a word you guess: ")
-                    word.lower()
-                    if word == secret_word:
-                        print("You guessed right!")
+                    if not dupli:
                         break
-                    else:
-                        print("You guessed wrong!")
-                        print_guessed()
-                        attempt += 1
-                        mistakes_made += 2
-                case _:
-                    print("Input the correct number!")
+                letters_guessed.append(letter)
+                for i in range(0, len(secret_word)):
+                    if letter == secret_word[i]:
+                        guess_bool = True
+                        break
+                if guess_bool:
+                    print("You guessed right!")
+                    print_guessed()
+                else:
+                    print("You guessed wrong!")
+                    print_guessed()
+                    mistakes_made += 1
+                    attempt += 1
+            elif select_num == 2:
+                guess_bool = False
+                print(MAX_GUESSES - mistakes_made, "guesses left")
+                word = input("Input a word you guess: ")
+                word.lower()
+                if word == secret_word:
+                    print("You guessed right!")
+                    break
+                else:
+                    print("You guessed wrong!")
+                    print_guessed()
+                    attempt += 1
+                    mistakes_made += 2
+            else:
+                print("Input the correct number!")
 
         if word_guessed():
             if attempt % 2 == 1:
