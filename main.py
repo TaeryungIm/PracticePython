@@ -200,5 +200,10 @@ def print_guessed():
     return str_dash
 
 
-print(word_guessed())
-print_guessed()
+# print(word_guessed())
+# print_guessed()
+
+le = "JDJF"
+print(le)
+le = le.lower()
+print(le)

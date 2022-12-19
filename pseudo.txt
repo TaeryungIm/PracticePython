@@ -1,0 +1,10 @@
+select mode:
+    if easy:
+        get_word less than 4 letters
+        MAX_GUESSES 12
+    elif medium:
+        get_word between 4 and 8 letters
+        MAX_GUESSES 6
+    elif hard:
+        get_word more than 8 letters
+        MAX_GUESSES 5

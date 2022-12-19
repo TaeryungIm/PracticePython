@@ -158,7 +158,7 @@ def play_hangman():
                 while True:  # loop it until you guess the letter that hasn't been guessed already
                     dupli = False
                     letter = input("Input a letter you guess: ")
-                    letter.lower()
+                    letter = letter.lower()
                     for i in letters_guessed:  # if it's already guessed
                         if i == letter:
                             dupli = True
@@ -182,7 +182,7 @@ def play_hangman():
                 guess_bool = False
                 print(MAX_GUESSES - mistakes_made, "guesses left")
                 word = input("Input a word you guess: ")
-                word.lower()
+                word = word.lower()
                 if word == secret_word:
                     print("You guessed right!")
                     break
@@ -215,7 +215,7 @@ def play_hangman():
                 while True:
                     dupli = False
                     letter = input("Input a letter you guess: ")
-                    letter.lower()
+                    letter = letter.lower()
                     for i in letters_guessed:
                         if i == letter:
                             dupli = True
@@ -240,7 +240,7 @@ def play_hangman():
                 guess_bool = False
                 print(MAX_GUESSES - mistakes_made, "guesses left")
                 word = input("Input a word you guess: ")
-                word.lower()
+                word = word.lower()
                 if word == secret_word:
                     print("You guessed right!")
                     break
